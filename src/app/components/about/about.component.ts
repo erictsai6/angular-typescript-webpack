@@ -5,7 +5,7 @@ export class AboutComponent implements ng.IComponentOptions {
 
     constructor() {
         this.controller = AboutController;
-        this.template = require('./about.html');
+        this.template = require('./about.component.html');
     }
 }
 

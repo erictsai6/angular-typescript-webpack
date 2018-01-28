@@ -6,7 +6,7 @@ export class HomeComponent implements ng.IComponentOptions {
 
     constructor() {
         this.controller = HomeController;
-        this.template = require('./home.html');
+        this.template = require('./home.component.html');
     }
 }
 

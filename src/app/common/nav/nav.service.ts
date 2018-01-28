@@ -1,4 +1,3 @@
-import { State, Ng1StateDeclaration } from 'angular-ui-router';
 
 export class NavService {
 
@@ -6,16 +5,23 @@ export class NavService {
 
     constructor() {
         this.pages = new Array<NavItem>();
+        this.initializeLinks();
     }
 
-    addNavItem(page: NavItem) {
-        this.pages.push(page);
+    private initializeLinks() {
+        this.pages.push({
+            url: '/',
+            label: 'Home'
+        });
+        this.pages.push({
+            url: '/about',
+            label: 'About'
+        });
     }
 }
 
 
 export interface NavItem {
-    state: string;
     url: string;
     label: string;
 }
