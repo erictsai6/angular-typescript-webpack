@@ -1,3 +1,7 @@
 <md-toolbar layout="row" class="md-toolbar-tools">
+	<img class="nav-logo" src="/assets/img/reddit-logo.png">
 	<md-button ng-repeat="page in $ctrl.pages" ng-href="{{page.url}}">{{ page.label }}</md-button>
+	<md-input-container>
+		<input type="search" placeholder="Enter in search term">
+	</md-input-container>
 </md-toolbar>

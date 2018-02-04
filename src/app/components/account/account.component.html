@@ -1,0 +1,10 @@
+<div layout-padding layout="column">
+	<h1 class="md-headline">Welcome {{$ctrl.identity.name}}</h1>
+	<div class="md-body-1">
+		<img src="{{$ctrl.identity.icon_img}}">
+		<md-content>
+			<div>Total karma: {{$ctrl.identity.comment_karma}}</div>
+			<div>Created: {{$ctrl.identity.created}}</div>
+		</md-content>
+	</div>
+</div>

@@ -1,5 +1,7 @@
 import { NavService, NavItem } from './nav.service';
 
+import './nav.component.scss';
+
 export class NavComponent implements ng.IComponentOptions {
     controller: ng.IControllerConstructor;
     template: string;

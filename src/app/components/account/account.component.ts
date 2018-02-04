@@ -1,23 +1,22 @@
-import './home.scss';
-
-import { OauthService } from '../../common/services/oauth.service';
 import { Credentials } from '../../common/models/credentials.model';
+import { OauthService } from '../../common/services/oauth.service';
 import { RedditService } from '../../common/services/reddit.service';
+import { Identity } from '../../common/models/identity.model';
 
-export class HomeComponent implements ng.IComponentOptions {
+export class AccountComponent implements ng.IComponentOptions {
     controller: ng.IControllerConstructor;
     template: string;
 
     constructor() {
-        this.controller = HomeController;
-        this.template = require('./home.component.html');
+        this.controller = AccountController;
+        this.template = require('./account.component.html');
     }
 }
 
-class HomeController implements ng.IComponentController {
+class AccountController implements ng.IComponentController {
 
     public credentials: Credentials;
-    public subredditCards;
+    public identity: Identity;
 
     constructor(private oauthService: OauthService,
                 private redditService: RedditService,
@@ -32,14 +31,10 @@ class HomeController implements ng.IComponentController {
         }
 
         // Initialize request for
-        this.redditService.getSubreddit()
-            .then((data: any) => {
-                this.subredditCards = data.data.children;
+        this.redditService.getIdentity()
+            .then((identity) => {
+                this.identity = identity;
             });
-    }
-
-    public navigateToLink(url) {
-        window.location.href = url;
     }
 
 }
