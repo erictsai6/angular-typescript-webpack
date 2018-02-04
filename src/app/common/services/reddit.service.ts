@@ -2,10 +2,14 @@ import { StorageUtility, StorageKeys } from "../utilities/storage.utility";
 import { Credentials } from '../models/credentials.model';
 import { OauthService } from './oauth.service';
 import { Identity } from '../models/identity.model';
+import { SearchQuery } from '../models/search-query.model';
 
 export class RedditService {
 
     private static ANGULAR = 'angular';
+    private static DEFAULT_PARAMS = {
+        count: 10
+    };
 
     private apiUrl: string;
     private authorizationUrl: string;
@@ -22,17 +26,12 @@ export class RedditService {
         this.apiUrl = this.appConfig.reddit.apiUrl;
     }
 
-    public getSubreddit() {
-        const requestConfig = this.getRequestConfig();
-        return this.$http.get(`${this.apiUrl}/r/${RedditService.ANGULAR}`, requestConfig)
-            .then((response) => {
-                return response.data;
-            });
-    }
-
-    public searchSubreddit(searchQuery?) {
-        const requestConfig = this.getRequestConfig();
-        return this.$http.get(`${this.apiUrl}/r/${RedditService.ANGULAR}/search`, requestConfig)
+    public getSubreddit(searchQuery?: SearchQuery) {
+        const requestConfig = this.getRequestConfig(searchQuery);
+        const url = searchQuery && searchQuery.isSearch() ?
+            `${this.apiUrl}/r/${RedditService.ANGULAR}/search` :
+            `${this.apiUrl}/r/${RedditService.ANGULAR}`;
+        return this.$http.get(url, requestConfig)
             .then((response) => {
                 return response.data;
             });
@@ -46,12 +45,12 @@ export class RedditService {
             });
     }
 
-    private getRequestConfig() {
+    private getRequestConfig(searchQuery?: SearchQuery) {
+        const isSearch: boolean = searchQuery && searchQuery.isSearch();
+
         const credentials = this.oauthService.getCredentials();
         return {
-            params: {
-                count: 10
-            },
+            params: isSearch ? searchQuery.toQuery() : RedditService.DEFAULT_PARAMS,
             headers: {
                 Authorization: `Bearer ${credentials.access_token}`
             }

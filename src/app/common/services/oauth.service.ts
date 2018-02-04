@@ -23,6 +23,10 @@ export class OauthService {
         ];
     }
 
+    public setCredentials(data) {
+        this.storageUtility.set(StorageKeys.CREDENTIALS, data);
+    }
+
     public getCredentials() {
         const credentials = this.storageUtility.get(StorageKeys.CREDENTIALS);
         return credentials ? new Credentials(credentials) : null;

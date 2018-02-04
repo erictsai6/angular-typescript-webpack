@@ -1,5 +1,6 @@
 import { Credentials } from './common/models/credentials.model';
 import { OauthService } from "./common/services/oauth.service";
+import { EventsManager } from './common/utilities/events-manager.utility';
 
 /**
  * App Component
@@ -28,13 +29,28 @@ export class AppController implements ng.IComponentController {
 
     public credentials: Credentials;
 
-    constructor(private oauthService: OauthService) {
+    private subscription;
+
+    constructor(private oauthService: OauthService,
+                private eventsManager: EventsManager) {
         "ngInject";
     }
 
     $onInit() {
-        this.credentials = this.oauthService.getCredentials();
+        this.retrieveCredentials();
+        this.subscription = this.eventsManager.subscribe('credentials:updated', () => {
+            this.retrieveCredentials();
+        });
     }
 
-    $onChanges(changes: ng.IOnChangesObject) { }
+    $onDestroy() {
+        this.subscription();
+    }
+
+    private retrieveCredentials() {
+        const credentials = this.oauthService.getCredentials();
+        this.credentials = credentials && !credentials.is_expired ?
+            credentials : null;
+    }
+
 }

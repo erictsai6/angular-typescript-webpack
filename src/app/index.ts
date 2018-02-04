@@ -4,7 +4,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { AccountComponent } from './components/account/account.component';
 import { NavComponent } from './common/nav/nav.component';
-import { NavService } from './common/nav/nav.service';
 
 import './app.scss';
 import { StorageUtility } from './common/utilities/storage.utility';
@@ -13,6 +12,8 @@ import { AppConfig } from './config';
 import { OauthComponent } from './components/oauth/oauth.component';
 import { LoginComponent } from './components/login/login.component';
 import { RedditService } from './common/services/reddit.service';
+import { EventsManager } from './common/utilities/events-manager.utility';
+import { SearchInputComponent } from './common/components/search-input/search-input.component';
 
 function routeConfig(
     $locationProvider: ng.ILocationProvider,
@@ -65,12 +66,13 @@ const App: ng.IModule = angular
     .component('account', new AccountComponent)
     .component('login', new LoginComponent)
     .component('nav', new NavComponent)
+    .component('searchInput', new SearchInputComponent)
 
     .constant('appConfig', AppConfig)
 
     .service('redditService', RedditService)
     .service('storageUtility', StorageUtility)
-    .service('oauthService', OauthService)
-    .service('NavService', NavService);
+    .service('eventsManager', EventsManager)
+    .service('oauthService', OauthService);
 
 export default App.name;

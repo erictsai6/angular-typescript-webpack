@@ -1,6 +1,6 @@
 
 import { OauthService } from '../../common/services/oauth.service';
-import { StorageUtility, StorageKeys } from '../../common/utilities/storage.utility';
+import { EventsManager } from '../../common/utilities/events-manager.utility';
 
 export class OauthComponent implements ng.IComponentOptions {
     controller: ng.IControllerConstructor;
@@ -17,7 +17,8 @@ class OauthController implements ng.IComponentController {
     public isReady: boolean;
 
     constructor(private $location: ng.ILocationService,
-                private storageUtility: StorageUtility) {
+                private eventsManager: EventsManager,
+                private oauthService: OauthService) {
         "ngInject";
     }
 
@@ -27,7 +28,8 @@ class OauthController implements ng.IComponentController {
         if (!dictionary.error) {
             dictionary['expires_in'] = +dictionary['expires_in'];
             dictionary['create_time'] = new Date();
-            this.storageUtility.set(StorageKeys.CREDENTIALS, dictionary);
+            this.oauthService.setCredentials(dictionary);
+            this.eventsManager.publish('credentials:updated');
             this.$location.path('/').hash('');
         }
 
