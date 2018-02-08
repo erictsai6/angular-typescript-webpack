@@ -1,5 +1,5 @@
 
-import { OauthService } from '../../common/services/oauth.service';
+import { OauthService } from '../../shared/services/oauth.service';
 import './login.component.scss';
 
 export class LoginComponent implements ng.IComponentOptions {
@@ -19,7 +19,7 @@ class LoginController implements ng.IComponentController {
         "ngInject";
     }
 
-    $onInit() {
+    public $onInit() {
         this.redditAuthorizationLink = this.oauthService.getAuthorizationUrl();
     }
 

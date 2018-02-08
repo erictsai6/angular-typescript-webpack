@@ -3,17 +3,17 @@ import { AppComponent } from './app.component';
 
 import { HomeComponent } from './components/home/home.component';
 import { AccountComponent } from './components/account/account.component';
-import { NavComponent } from './common/nav/nav.component';
+import { NavComponent } from './shared/components/nav/nav.component';
 
 import './app.scss';
-import { StorageUtility } from './common/utilities/storage.utility';
-import { OauthService } from './common/services/oauth.service';
+import { StorageUtility } from './shared/utilities/storage.utility';
+import { OauthService } from './shared/services/oauth.service';
 import { AppConfig } from './config';
 import { OauthComponent } from './components/oauth/oauth.component';
 import { LoginComponent } from './components/login/login.component';
-import { RedditService } from './common/services/reddit.service';
-import { EventsManager } from './common/utilities/events-manager.utility';
-import { SearchInputComponent } from './common/components/search-input/search-input.component';
+import { RedditService } from './shared/services/reddit.service';
+import { EventsManager } from './shared/utilities/events-manager.utility';
+import { SearchInputComponent } from './shared/components/search-input/search-input.component';
 
 function routeConfig(
     $locationProvider: ng.ILocationProvider,

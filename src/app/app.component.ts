@@ -1,6 +1,6 @@
-import { Credentials } from './common/models/credentials.model';
-import { OauthService } from "./common/services/oauth.service";
-import { EventsManager } from './common/utilities/events-manager.utility';
+import { Credentials } from './shared/models/credentials.model';
+import { OauthService } from "./shared/services/oauth.service";
+import { EventsManager } from './shared/utilities/events-manager.utility';
 
 /**
  * App Component
@@ -36,14 +36,14 @@ export class AppController implements ng.IComponentController {
         "ngInject";
     }
 
-    $onInit() {
+    public $onInit() {
         this.retrieveCredentials();
         this.subscription = this.eventsManager.subscribe('credentials:updated', () => {
             this.retrieveCredentials();
         });
     }
 
-    $onDestroy() {
+    public $onDestroy() {
         this.subscription();
     }
 

@@ -1,7 +1,7 @@
-import { Credentials } from '../../common/models/credentials.model';
-import { OauthService } from '../../common/services/oauth.service';
-import { RedditService } from '../../common/services/reddit.service';
-import { Identity } from '../../common/models/identity.model';
+import { Credentials } from '../../shared/models/credentials.model';
+import { OauthService } from '../../shared/services/oauth.service';
+import { RedditService } from '../../shared/services/reddit.service';
+import { Identity } from '../../shared/models/identity.model';
 
 export class AccountComponent implements ng.IComponentOptions {
     controller: ng.IControllerConstructor;
@@ -24,7 +24,7 @@ class AccountController implements ng.IComponentController {
         "ngInject";
     }
 
-    $onInit() {
+    public $onInit() {
         this.credentials = this.oauthService.getCredentials();
         if (!this.credentials || this.credentials.is_expired) {
             return this.$location.path('/login');

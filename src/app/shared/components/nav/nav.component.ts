@@ -1,6 +1,6 @@
 
 import './nav.component.scss';
-import { Credentials } from '../models/credentials.model';
+import { Credentials } from '../../models/credentials.model';
 
 export interface NavItem {
     url: string;
@@ -27,10 +27,10 @@ class NavController implements ng.IComponentController {
 
     constructor() {
         "ngInject";
-        this.pages = new Array<NavItem>();
+        this.pages = [] as NavItem[];
     }
 
-    $onInit() {
+    public $onInit() {
         this.pages.push({
             url: '/account',
             label: 'Account'

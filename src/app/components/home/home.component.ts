@@ -1,10 +1,10 @@
 import './home.scss';
 
-import { OauthService } from '../../common/services/oauth.service';
-import { Credentials } from '../../common/models/credentials.model';
-import { RedditService } from '../../common/services/reddit.service';
-import { SearchQuery } from '../../common/models/search-query.model';
-import { EventsManager } from '../../common/utilities/events-manager.utility';
+import { OauthService } from '../../shared/services/oauth.service';
+import { Credentials } from '../../shared/models/credentials.model';
+import { RedditService } from '../../shared/services/reddit.service';
+import { SearchQuery } from '../../shared/models/search-query.model';
+import { EventsManager } from '../../shared/utilities/events-manager.utility';
 
 export class HomeComponent implements ng.IComponentOptions {
     controller: ng.IControllerConstructor;
@@ -31,7 +31,7 @@ class HomeController implements ng.IComponentController {
         "ngInject";
     }
 
-    $onInit() {
+    public $onInit() {
         this.credentials = this.oauthService.getCredentials();
         if (!this.credentials || this.credentials.is_expired) {
             return this.$location.path('/login');
@@ -48,7 +48,7 @@ class HomeController implements ng.IComponentController {
         this.retrieveCards();
     }
 
-    $onDestroy() {
+    public $onDestroy() {
         this.subscription();
     }
 

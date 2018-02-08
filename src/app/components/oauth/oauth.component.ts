@@ -1,6 +1,6 @@
 
-import { OauthService } from '../../common/services/oauth.service';
-import { EventsManager } from '../../common/utilities/events-manager.utility';
+import { OauthService } from '../../shared/services/oauth.service';
+import { EventsManager } from '../../shared/utilities/events-manager.utility';
 
 export class OauthComponent implements ng.IComponentOptions {
     controller: ng.IControllerConstructor;
@@ -22,7 +22,7 @@ class OauthController implements ng.IComponentController {
         "ngInject";
     }
 
-    $onInit() {
+    public $onInit() {
         const dictionary: any = this.toDict(this.$location.hash());
 
         if (!dictionary.error) {
