@@ -2,6 +2,8 @@
 import './nav.component.scss';
 import { Credentials } from '../../models/credentials.model';
 
+import * as template from './nav.component.html';
+
 export interface NavItem {
     url: string;
     label: string;
@@ -14,7 +16,7 @@ export class NavComponent implements ng.IComponentOptions {
 
     constructor() {
         this.controller = NavController;
-        this.template = require('./nav.component.html');
+        this.template = String(template);
         this.bindings = {
             credentials: '<'
         };

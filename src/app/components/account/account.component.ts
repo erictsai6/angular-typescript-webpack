@@ -3,13 +3,15 @@ import { OauthService } from '../../shared/services/oauth.service';
 import { RedditService } from '../../shared/services/reddit.service';
 import { Identity } from '../../shared/models/identity.model';
 
+import * as template from './account.component.html';
+
 export class AccountComponent implements ng.IComponentOptions {
     controller: ng.IControllerConstructor;
     template: string;
 
     constructor() {
         this.controller = AccountController;
-        this.template = require('./account.component.html');
+        this.template = String(template);
     }
 }
 

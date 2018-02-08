@@ -2,6 +2,8 @@
 import { EventsManager } from '../../utilities/events-manager.utility';
 import { SearchQuery } from '../../models/search-query.model';
 
+import * as template from './search-input.component.html';
+
 export class SearchInputComponent implements ng.IComponentOptions {
     controller: ng.IControllerConstructor;
     template: string;
@@ -9,7 +11,7 @@ export class SearchInputComponent implements ng.IComponentOptions {
 
     constructor() {
         this.controller = SearchInputController;
-        this.template = require('./search-input.component.html');
+        this.template = String(template);
         this.bindings = {
             searchQuery: '<'
         };

@@ -6,13 +6,15 @@ import { RedditService } from '../../shared/services/reddit.service';
 import { SearchQuery } from '../../shared/models/search-query.model';
 import { EventsManager } from '../../shared/utilities/events-manager.utility';
 
+import * as template from './home.component.html';
+
 export class HomeComponent implements ng.IComponentOptions {
     controller: ng.IControllerConstructor;
     template: string;
 
     constructor() {
         this.controller = HomeController;
-        this.template = require('./home.component.html');
+        this.template = String(template);
     }
 }
 

@@ -2,13 +2,15 @@
 import { OauthService } from '../../shared/services/oauth.service';
 import './login.component.scss';
 
+import * as template from './login.component.html';
+
 export class LoginComponent implements ng.IComponentOptions {
     controller: ng.IControllerConstructor;
     template: string;
 
     constructor() {
         this.controller = LoginController;
-        this.template = require('./login.component.html');
+        this.template = String(template);
     }
 }
 

@@ -2,13 +2,15 @@
 import { OauthService } from '../../shared/services/oauth.service';
 import { EventsManager } from '../../shared/utilities/events-manager.utility';
 
+import * as template from './oauth.component.html';
+
 export class OauthComponent implements ng.IComponentOptions {
     controller: ng.IControllerConstructor;
     template: string;
 
     constructor() {
         this.controller = OauthController;
-        this.template = require('./oauth.component.html');
+        this.template = String(template);
     }
 }
 
