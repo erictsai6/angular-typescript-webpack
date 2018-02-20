@@ -1,16 +1,16 @@
 <div layout-padding layout="column" class="home">
     <h1 class="md-headline">Welcome to the Demo Reddit App</h1>
     <div class="md-body-1">
-        <md-content>
+        <div>
                 <div>Click on the button below to be redirected to reddit.com.</div>
                 <div>It will prompt you login and approve access which will log you in.</div>
                 <a href="{{$ctrl.redditAuthorizationLink}}">
-                    <md-button class="md-primary md-raised">
+                    <button class="md-primary md-raised">
                         <img class="reddit-logo-button" src="/assets/img/reddit-logo.png"
                             alt="Reddit button logo">
                         Click me to login
-                    </md-button>
+                    </button>
                 </a>
-        </md-content>
+        </div>
     </div>
 </div>

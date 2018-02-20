@@ -27,7 +27,7 @@ class NavController implements ng.IComponentController {
     public pages: Array<NavItem>;
     public credentials: Credentials;
 
-    constructor() {
+    constructor(private $location: ng.ILocationService) {
         "ngInject";
         this.pages = [] as NavItem[];
     }
@@ -37,5 +37,9 @@ class NavController implements ng.IComponentController {
             url: '/account',
             label: 'Account'
         });
+    }
+
+    public goTo(url) {
+        this.$location.path(url);
     }
 }

@@ -57,7 +57,7 @@ class HomeController implements ng.IComponentController {
     public retrieveCards() {
         this.redditService.getSubreddit(this.searchQuery)
             .then((data: any) => {
-                this.subredditCards = data.data.children;
+                this.subredditCards = data.data ? data.data.children : [];
             });
     }
 

@@ -1,4 +1,3 @@
-
 // Event map is a dictionary with event name and list of callbacks
 interface IEventMap {
     [name: string]: Array<(data?: any) => void>;
@@ -39,7 +38,7 @@ export class EventsManager {
      * @param name - event name that we are triggering/signaling
      * @param data - optional data that we can send as a parameter
      */
-    public publish = (name: string, data?: any, runNow?: boolean): void => {
+    public publish = (name: string, data?: any): void => {
 
         if (this.eventMap.hasOwnProperty(name)) {
             for (let callback of this.eventMap[name]) {

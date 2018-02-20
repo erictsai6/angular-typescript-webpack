@@ -9,12 +9,11 @@ export class OauthService {
     private scope: string[];
 
     constructor(
-        private $http: ng.IHttpService,
-        private appConfig,
+        private configuration,
         private storageUtility: StorageUtility
     ) {
-        this.authorizationUrl = this.appConfig.reddit.authorizationUrl;
-        this.clientId = this.appConfig.reddit.clientId;
+        this.authorizationUrl = this.configuration.reddit.authorizationUrl;
+        this.clientId = this.configuration.reddit.clientId;
         this.redirectUrl = `${window.location.protocol}//${window.location.host}/oauth`;
         this.scope = [
             'identity',

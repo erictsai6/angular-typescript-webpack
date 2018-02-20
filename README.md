@@ -9,7 +9,7 @@ npm install
 npm start
 ```
 
-This will start the webpack dev server at [localhost:8080](http://127.0.0.1:8080/) in your browser.
+This will start the webpack dev server at [localhost:8081](http://127.0.0.1:8081/) in your browser.
 
 Demo screenshot below
 ![Reddit Demo App Screenshot](./readme/img/demo-screenshot.png)

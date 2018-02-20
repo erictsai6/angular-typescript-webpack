@@ -8,12 +8,13 @@ import { NavComponent } from './shared/components/nav/nav.component';
 import './app.scss';
 import { StorageUtility } from './shared/utilities/storage.utility';
 import { OauthService } from './shared/services/oauth.service';
-import { AppConfig } from './config';
+import { appConfig } from './config';
 import { OauthComponent } from './components/oauth/oauth.component';
 import { LoginComponent } from './components/login/login.component';
 import { RedditService } from './shared/services/reddit.service';
 import { EventsManager } from './shared/utilities/events-manager.utility';
 import { SearchInputComponent } from './shared/components/search-input/search-input.component';
+import { ActivatedRouter } from './shared/utilities/activated-router.utility';
 
 function routeConfig(
     $locationProvider: ng.ILocationProvider,
@@ -68,11 +69,12 @@ const App: ng.IModule = angular
     .component('nav', new NavComponent)
     .component('searchInput', new SearchInputComponent)
 
-    .constant('appConfig', AppConfig)
+    .constant('configuration', appConfig)
 
     .service('redditService', RedditService)
     .service('storageUtility', StorageUtility)
     .service('eventsManager', EventsManager)
+    .service('activatedRouter', ActivatedRouter)
     .service('oauthService', OauthService);
 
 export default App.name;

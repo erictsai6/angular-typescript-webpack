@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import './app.scss';
+
 /*
  * Platform and Environment providers/directives/pipes
  */
@@ -23,6 +25,7 @@ import { OauthService } from './shared/services/oauth.service';
 import { RedditService } from './shared/services/reddit.service';
 import { EventsManager } from './shared/utilities/events-manager.utility';
 import { StorageUtility } from './shared/utilities/storage.utility';
+import { appConfig } from './config';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -59,6 +62,7 @@ const APP_PROVIDERS = [
    * Expose our Services and Providers into Angular's dependency injection.
    */
   providers: [
+    { provide: 'configuration', useValue: appConfig },
     OauthService,
     RedditService,
     EventsManager,

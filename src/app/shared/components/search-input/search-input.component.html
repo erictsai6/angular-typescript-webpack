@@ -1,5 +1,5 @@
-<md-input-container class="navigation-search">
+<div class="navigation-search">
         <input type="search" placeholder="Search /r/angular"
             ng-model="$ctrl.queryText"
-            ng-keydown="$event.keyCode === 13 && $ctrl.initiateSearch($ctrl.queryText)">
-</md-input-container>
+            ng-keydown="$ctrl.initiateSearch($event, $ctrl.queryText)">
+</div>

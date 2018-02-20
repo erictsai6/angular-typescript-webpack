@@ -35,7 +35,10 @@ class SearchInputController implements ng.IComponentController {
         this.getQueryText();
     }
 
-    public initiateSearch(queryText) {
+    public initiateSearch(event, queryText) {
+        if (event.keyCode !== 13) {
+            return;
+        }
         this.eventsManager.publish('searchQuery:queryText', queryText);
     }
 

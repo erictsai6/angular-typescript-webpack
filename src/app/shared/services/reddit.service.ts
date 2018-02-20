@@ -19,11 +19,11 @@ export class RedditService {
 
     constructor(
         private $http: ng.IHttpService,
-        private appConfig,
+        private configuration,
         private oauthService: OauthService,
         private storageUtility: StorageUtility
     ) {
-        this.apiUrl = this.appConfig.reddit.apiUrl;
+        this.apiUrl = this.configuration.reddit.apiUrl;
     }
 
     public getSubreddit(searchQuery?: SearchQuery) {
@@ -39,7 +39,7 @@ export class RedditService {
 
     public getIdentity() {
         const requestConfig = this.getRequestConfig();
-        return this.$http.get(`${this.apiUrl}/api/v1/me`, requestConfig)
+        return this.$http.get(`${this.apiUrl}/api/v1/me`,  )
             .then((response) => {
                 return new Identity(response.data);
             });

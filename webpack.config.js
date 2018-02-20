@@ -24,7 +24,7 @@ module.exports = (function makeWebpackConfig() {
         path: getPath('./dist'),
         filename: isProd ? '[name].[hash].js' : '[name].bundle.js',
         chunkFilename: isProd ? '[name].[hash].js' : '[name].bundle.js',
-        publicPath: isProd ? '/' : 'http://127.0.0.1:8080/'
+        publicPath: isProd ? '/' : 'http://127.0.0.1:8081/'
 
     };
 
@@ -111,6 +111,7 @@ module.exports = (function makeWebpackConfig() {
 
     config.devServer = {
         host: '0.0.0.0',
+        port: 8081,
         contentBase: './src'
     }
 

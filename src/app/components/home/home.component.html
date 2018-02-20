@@ -1,24 +1,24 @@
-<div layout-padding layout="column" class="home">
+<div layout-padding layout="column" class="home layout-padding layout-column">
 	<h1 class="md-headline">/r/angular</h1>
 	<div class="md-body-1">
-		<md-card ng-repeat="card in $ctrl.subredditCards track by card.data.id"
+		<div ng-repeat="card in $ctrl.subredditCards track by card.data.id"
 			ng-click="$ctrl.navigateToLink(card.data.url)">
 			<div class="reddit-card-img-container">
 				<img ng-if="card.data.preview && card.data.preview.images.length > 0"
-					src="{{card.data.preview.images[0].source.url}}"
+					src="{{card.data.thumbnail}}"
 					class="md-card-image reddit-card-img"
 					alt="{{card.data.title}} preview image">
 			</div>
-			<md-card-content>
+			<div>
 				<h2>{{card.data.title}}</h2>
 				<p>{{card.data.selftext | limitTo: 500}}
 					<span ng-if="card.data.selftext.length > 500">...</span>
 				</p>
-			</md-card-content>
-			<md-card-footer>
+			</div>
+			<div>
 				<div>Author: {{card.data.author}}</div>
 				<div>Posted: {{card.data.created_utc * 1000 | date : "MMM d, yyyy"}}</div>
-			</md-card-footer>
+			</div>
 		</md-card>
 	</div>
 	<div ng-if="!$ctrl.subredditCards || $ctrl.subredditCards.length === 0" class="md-body-1">
