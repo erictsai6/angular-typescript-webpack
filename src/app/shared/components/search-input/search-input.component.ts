@@ -1,5 +1,3 @@
-
-import { EventsManager } from '../../utilities/events-manager.utility';
 import { SearchQuery } from '../../models/search-query.model';
 
 import * as template from './search-input.component.html';
@@ -13,7 +11,8 @@ export class SearchInputComponent implements ng.IComponentOptions {
         this.controller = SearchInputController;
         this.template = String(template);
         this.bindings = {
-            searchQuery: '<'
+            searchQuery: '<',
+            onQueryTextUpdated: '&'
         };
     }
 }
@@ -22,8 +21,9 @@ class SearchInputController implements ng.IComponentController {
 
     public searchQuery: SearchQuery;
     public queryText: string;
+    public onQueryTextUpdated: Function;
 
-    constructor(private eventsManager: EventsManager) {
+    constructor() {
         "ngInject";
     }
 
@@ -31,15 +31,15 @@ class SearchInputController implements ng.IComponentController {
         this.getQueryText();
     }
 
-    public $onChanges(changes) {
+    public $onChanges() {
         this.getQueryText();
     }
 
     public initiateSearch(event, queryText) {
-        if (event.keyCode !== 13) {
+        if (event && event.keyCode !== 13) {
             return;
         }
-        this.eventsManager.publish('searchQuery:queryText', queryText);
+        this.onQueryTextUpdated({ $event: queryText});
     }
 
     private getQueryText() {

@@ -1,5 +1,12 @@
 <div class="navigation-search">
-        <input type="search" placeholder="Search /r/angular"
+    <div>Enter search term below</div>
+    <div>
+        <input type="search"
+            placeholder="Search /r/angular"
             ng-model="$ctrl.queryText"
             ng-keydown="$ctrl.initiateSearch($event, $ctrl.queryText)">
+    </div>
+    <div>
+        <button ng-click="$ctrl.initiateSearch(null, $ctrl.queryText)">Search</button>
+    </div>
 </div>

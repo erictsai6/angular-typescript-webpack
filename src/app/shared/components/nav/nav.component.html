@@ -1,6 +1,5 @@
 <div ng-if="$ctrl.credentials"
 	layout="row" class="md-toolbar-tools navigation-container layout-row">
 	<a href="/"><img class="nav-logo" src="/assets/img/reddit-logo.png"></a>
-	<search-input search-query="$ctrl.searchQuery"></search-input>
 	<button ng-repeat="page in $ctrl.pages" ng-click="$ctrl.goTo(page.url)">{{ page.label }}</button>
 </div>

@@ -24,11 +24,8 @@ class HomeController implements ng.IComponentController {
     public searchQuery: SearchQuery;
     public subredditCards;
 
-    private subscription;
-
     constructor(private oauthService: OauthService,
                 private redditService: RedditService,
-                private eventsManager: EventsManager,
                 private $location: ng.ILocationService) {
         "ngInject";
     }
@@ -39,19 +36,15 @@ class HomeController implements ng.IComponentController {
             return this.$location.path('/login');
         }
 
-        this.subscription = this.eventsManager.subscribe('searchQuery:queryText', (queryText) => {
-            this.searchQuery = new SearchQuery({
-                queryText
-            });
-            this.retrieveCards();
-        });
-
         // Initialize request for
         this.retrieveCards();
     }
 
-    public $onDestroy() {
-        this.subscription();
+    public onQueryTextUpdated(queryText) {
+        this.searchQuery = new SearchQuery({
+            queryText
+        });
+        this.retrieveCards();
     }
 
     public retrieveCards() {

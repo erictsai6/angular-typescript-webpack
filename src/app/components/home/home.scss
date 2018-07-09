@@ -2,6 +2,18 @@
     // rules specific to home page
 }
 
+.reddit-card-container {
+    border-radius: 2px;
+    border: 1px dotted #9b9b9b;
+    padding: 5px 10px;
+    margin: 5px 0px;
+
+    &:hover {
+        background-color: darken(white, 10%);
+        cursor: pointer;
+    }
+}
+
 .reddit-card-img-container {
     max-height: 150px;
     overflow: hidden;

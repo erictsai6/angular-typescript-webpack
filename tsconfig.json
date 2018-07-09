@@ -1,23 +1,27 @@
 {
 	"compilerOptions": {
+		"baseUrl": "./src",
 		"module": "commonjs",
 		"target": "es5",
 		"noImplicitAny": false,
 		"removeComments": true,
 		"lib": ["es2015", "dom"],
-        "noLib": false,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "sourceMap": true,
 		"moduleResolution": "node",
-		"noEmitHelpers": true
+		"noEmitHelpers": true,
+		"typeRoots": [
+			"node_modules/@types",
+			"./src/custom-typings.d.ts"
+		]
 	},
 	"compileOnSave": false,
 	"include": [
 		"src/app/**/*"
 	],
 	"exclude": [
-		"node_modules",
-		"dist"
+		"node_modules/",
+		"dist/"
 	]
 }

@@ -1,8 +1,10 @@
 <div layout-padding layout="column" class="home layout-padding layout-column">
 	<h1 class="md-headline">/r/angular</h1>
+	<search-input search-query="$ctrl.searchQuery" on-query-text-updated="$ctrl.onQueryTextUpdated($event)"></search-input>
 	<div class="md-body-1">
 		<div ng-repeat="card in $ctrl.subredditCards track by card.data.id"
-			ng-click="$ctrl.navigateToLink(card.data.url)">
+			ng-click="$ctrl.navigateToLink(card.data.url)"
+			class="reddit-card-container">
 			<div class="reddit-card-img-container">
 				<img ng-if="card.data.preview && card.data.preview.images.length > 0"
 					src="{{card.data.thumbnail}}"
