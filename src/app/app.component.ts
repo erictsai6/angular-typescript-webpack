@@ -2,7 +2,6 @@ import { Credentials } from './shared/models/credentials.model';
 import { OauthService } from "./shared/services/oauth.service";
 import { EventsManager } from './shared/utilities/events-manager.utility';
 
-import * as template from './app.component.html';
 
 /**
  * App Component
@@ -16,7 +15,15 @@ export class AppComponent implements ng.IComponentOptions {
     controller: ng.IControllerConstructor;
 
     constructor() {
-        this.template = String(template);
+        this.template = `<div>
+        <nav credentials="$ctrl.credentials"></nav>
+
+        <!-- content -->
+        <div class="content">
+            <ng-view></ng-view>
+        </div>
+
+    </div>`;
         this.controller = AppController;
     }
 };

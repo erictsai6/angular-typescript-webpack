@@ -2,6 +2,8 @@ import { SearchQuery } from '../../models/search-query.model';
 
 import * as template from './search-input.component.html';
 
+const ENTER_KEYCODE = 13;
+
 export class SearchInputComponent implements ng.IComponentOptions {
     controller: ng.IControllerConstructor;
     template: string;
@@ -36,10 +38,10 @@ class SearchInputController implements ng.IComponentController {
     }
 
     public initiateSearch(event, queryText) {
-        if (event && event.keyCode !== 13) {
+        if (event && event.keyCode !== ENTER_KEYCODE) {
             return;
         }
-        this.onQueryTextUpdated({ $event: queryText});
+        this.onQueryTextUpdated({ $event: queryText });
     }
 
     private getQueryText() {
