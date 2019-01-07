@@ -1,7 +1,6 @@
 import { Credentials } from './shared/models/credentials.model';
-import { OauthService } from "./shared/services/oauth.service";
+import { OauthService } from './shared/services/oauth.service';
 import { EventsManager } from './shared/utilities/events-manager.utility';
-
 
 /**
  * App Component
@@ -26,7 +25,7 @@ export class AppComponent implements ng.IComponentOptions {
     </div>`;
         this.controller = AppController;
     }
-};
+}
 
 /**
  * App Controller
@@ -35,21 +34,25 @@ export class AppComponent implements ng.IComponentOptions {
  * @implements {ng.IComponentController}
  */
 export class AppController implements ng.IComponentController {
-
     public credentials: Credentials;
 
     private subscription;
 
-    constructor(private oauthService: OauthService,
-                private eventsManager: EventsManager) {
-        "ngInject";
+    constructor(
+        private oauthService: OauthService,
+        private eventsManager: EventsManager
+    ) {
+        'ngInject';
     }
 
     public $onInit() {
         this.retrieveCredentials();
-        this.subscription = this.eventsManager.subscribe('credentials:updated', () => {
-            this.retrieveCredentials();
-        });
+        this.subscription = this.eventsManager.subscribe(
+            'credentials:updated',
+            () => {
+                this.retrieveCredentials();
+            }
+        );
     }
 
     public $onDestroy() {
@@ -58,8 +61,7 @@ export class AppController implements ng.IComponentController {
 
     private retrieveCredentials() {
         const credentials = this.oauthService.getCredentials();
-        this.credentials = credentials && !credentials.is_expired ?
-            credentials : null;
+        this.credentials =
+            credentials && !credentials.is_expired ? credentials : null;
     }
-
 }

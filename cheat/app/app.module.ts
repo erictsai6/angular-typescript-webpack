@@ -26,16 +26,16 @@ import { RedditService } from './shared/services/reddit.service';
 import { EventsManager } from './shared/utilities/events-manager.utility';
 import { StorageUtility } from './shared/utilities/storage.utility';
 import { appConfig } from './config';
+import { APP_BASE_HREF } from '@angular/common';
 
 // Application wide providers
-const APP_PROVIDERS = [
-];
+const APP_PROVIDERS = [];
 
 /**
  * `AppModule` is the main entry point into Angular2's bootstraping process
  */
 @NgModule({
-  bootstrap: [ AppComponent ],
+  bootstrap: [AppComponent],
   declarations: [
     AppComponent,
     AccountComponent,
@@ -43,7 +43,7 @@ const APP_PROVIDERS = [
     LoginComponent,
     HomeComponent,
     NavComponent,
-    SearchInputComponent
+    SearchInputComponent,
   ],
   /**
    * Import Angular's modules.
@@ -55,20 +55,21 @@ const APP_PROVIDERS = [
     HttpClientModule,
     RouterModule.forRoot(ROUTES, {
       useHash: Boolean(history.pushState) === false,
-      preloadingStrategy: PreloadAllModules
-    })
+      preloadingStrategy: PreloadAllModules,
+    }),
   ],
   /**
    * Expose our Services and Providers into Angular's dependency injection.
    */
   providers: [
+    { provide: APP_BASE_HREF, useValue: '/' },
     { provide: 'configuration', useValue: appConfig },
     OauthService,
     RedditService,
     EventsManager,
     StorageUtility,
     environment.ENV_PROVIDERS,
-    APP_PROVIDERS
-  ]
+    APP_PROVIDERS,
+  ],
 })
 export class AppModule {}
